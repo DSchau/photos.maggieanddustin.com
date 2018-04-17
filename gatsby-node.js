@@ -8,7 +8,6 @@ exports.createPages = function createPages({ boundActionCreators, graphql }) {
     {
       images:allS3Image(
           sort:{order:DESC, fields: [LastModified]}
-          limit: 20
         ) {
           edges {
             node {
