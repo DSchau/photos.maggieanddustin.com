@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Lightbox from 'react-images';
-import GatsbyImage from 'gatsby-image';
 
 import { Grid } from './grid';
+import { Photo } from './photo';
+import { toImageMap } from '../util';
 
 export class Photogrid extends Component {
   state = {
@@ -38,18 +39,20 @@ export class Photogrid extends Component {
   };
 
   render() {
-    const { images = [] } = this.props;
+    const { images: imagesProp = [] } = this.props;
     const { current, open } = this.state;
-    if (images.length === 0) {
+    if (imagesProp.length === 0) {
       return null;
     }
+
+    const images = imagesProp.map(toImageMap);
 
     return (
       <div>
         <Grid>
           {
             images.map(({ sizes }, index) => (
-              <span onClick={this.openLightbox(index)}><GatsbyImage sizes={sizes} /></span>
+              <Photo onClick={this.openLightbox(index)} sizes={sizes} key={sizes.src} />
             ))
           }
         </Grid>
