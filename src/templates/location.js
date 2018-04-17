@@ -1,9 +1,8 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React from 'react';
 
 import { Photogrid } from '../components/photo-grid';
 
-export default function IndexPage({ data }) {
+export default function LocationPage({ data }) {
   const { images } = data;
   return (
     <Photogrid images={images.edges} />
@@ -11,11 +10,10 @@ export default function IndexPage({ data }) {
 }
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  query LocationQuery($location: String!) {
     images:allS3Image(
-        filter:{Key:{regex:"/[^thumb].jpeg$/"}}
+        filter:{Key:{regex: $location}}
         sort:{order:DESC, fields: [LastModified]}
-        limit:20
       ) {
       edges {
         node {

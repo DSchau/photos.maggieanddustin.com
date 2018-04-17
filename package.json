@@ -29,6 +29,7 @@
   "devDependencies": {
     "dotenv": "~5.0.1",
     "gatsby-source-s3": "~0.0.0",
+    "limax": "~1.6.0",
     "prettier": "^1.12.0"
   }
 }
